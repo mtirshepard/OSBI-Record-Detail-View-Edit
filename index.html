@@ -148,7 +148,7 @@
                 <thead>
                   <tr class="results-header">
                     <th>SID</th>
-                    <th>Actions</th>
+                    <th>Main Actions</th>
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>Middle Name</th>
@@ -231,6 +231,7 @@
 
           <form id="detailForm" class="stack-md">
             <section class="osbi-card card-pad-lg record-overview">
+              <div class="dummy-banner">Proof of concept only. All names, identifiers, actions, and search rows below are dummy example data.</div>
               <dl class="record-meta-grid">
                 <div class="quick-fact">
                   <dt>TCN</dt>
@@ -249,6 +250,131 @@
                   <dd id="quickUpdated"></dd>
                 </div>
               </dl>
+            </section>
+
+            <section class="osbi-card legacy-workspace-card">
+              <div class="legacy-tabs" role="tablist" aria-label="Legacy action workspace">
+                <button type="button" class="legacy-tab legacy-tab-active">Record Management</button>
+                <button type="button" class="legacy-tab">Consolidate SID Info</button>
+                <button type="button" class="legacy-tab">Rejected Card Log</button>
+              </div>
+
+              <div class="legacy-panel">
+                <div class="legacy-panel-grid">
+                  <label class="legacy-field">
+                    <span>Last Name</span>
+                    <input id="legacyLastName" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>DOB</span>
+                    <input id="legacyDob" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>SSN</span>
+                    <input id="legacySsn" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>TCN</span>
+                    <input id="legacyTcn" type="text" readonly>
+                  </label>
+
+                  <label class="legacy-field">
+                    <span>First Name</span>
+                    <input id="legacyFirstName" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>Race</span>
+                    <input id="legacyRace" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>DL</span>
+                    <input id="legacyDl" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>DOC</span>
+                    <input id="legacyDoc" type="text" readonly>
+                  </label>
+
+                  <label class="legacy-field">
+                    <span>Mid. Name</span>
+                    <input id="legacyMiddleName" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>Sex</span>
+                    <input id="legacySex" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>SID</span>
+                    <input id="legacySid" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>Court</span>
+                    <input id="legacyCourt" type="text" readonly>
+                  </label>
+
+                  <label class="legacy-field">
+                    <span>Moniker</span>
+                    <input id="legacyMoniker" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>Eye</span>
+                    <input id="legacyEye" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>OTN</span>
+                    <input id="legacyOtn" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>OCA</span>
+                    <input id="legacyOca" type="text" readonly>
+                  </label>
+
+                  <label class="legacy-field">
+                    <span>Suffix</span>
+                    <input id="legacySuffix" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>Hair</span>
+                    <input id="legacyHair" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>FBI</span>
+                    <input id="legacyFbi" type="text" readonly>
+                  </label>
+                  <label class="legacy-field">
+                    <span>MNU</span>
+                    <input id="legacyMnu" type="text" readonly>
+                  </label>
+                </div>
+
+                <div class="legacy-button-row">
+                  <button type="button" class="legacy-button">Search</button>
+                  <button type="button" class="legacy-button legacy-button-secondary">Reset</button>
+                </div>
+
+                <section class="legacy-results-card">
+                  <div class="legacy-results-title">Search Results</div>
+                  <div class="legacy-results-scroll">
+                    <table class="legacy-results-table">
+                      <thead>
+                        <tr>
+                          <th>Select</th>
+                          <th>Last Name</th>
+                          <th>First Name</th>
+                          <th>Race</th>
+                          <th>Sex</th>
+                          <th>DOB</th>
+                          <th>SID</th>
+                          <th>TCN</th>
+                          <th>Arrest</th>
+                          <th>Auto</th>
+                        </tr>
+                      </thead>
+                      <tbody id="legacyResultsBody"></tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
             </section>
 
             <section class="osbi-card card-pad-lg">

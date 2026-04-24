@@ -106,6 +106,27 @@ const elements = {
   quickRecordType: document.getElementById("quickRecordType"),
   quickRank: document.getElementById("quickRank"),
   quickUpdated: document.getElementById("quickUpdated"),
+  legacyLastName: document.getElementById("legacyLastName"),
+  legacyDob: document.getElementById("legacyDob"),
+  legacySsn: document.getElementById("legacySsn"),
+  legacyTcn: document.getElementById("legacyTcn"),
+  legacyFirstName: document.getElementById("legacyFirstName"),
+  legacyRace: document.getElementById("legacyRace"),
+  legacyDl: document.getElementById("legacyDl"),
+  legacyDoc: document.getElementById("legacyDoc"),
+  legacyMiddleName: document.getElementById("legacyMiddleName"),
+  legacySex: document.getElementById("legacySex"),
+  legacySid: document.getElementById("legacySid"),
+  legacyCourt: document.getElementById("legacyCourt"),
+  legacyMoniker: document.getElementById("legacyMoniker"),
+  legacyEye: document.getElementById("legacyEye"),
+  legacyOtn: document.getElementById("legacyOtn"),
+  legacyOca: document.getElementById("legacyOca"),
+  legacySuffix: document.getElementById("legacySuffix"),
+  legacyHair: document.getElementById("legacyHair"),
+  legacyFbi: document.getElementById("legacyFbi"),
+  legacyMnu: document.getElementById("legacyMnu"),
+  legacyResultsBody: document.getElementById("legacyResultsBody"),
   modeBadge: document.getElementById("modeBadge"),
   editToggleButton: document.getElementById("editToggleButton"),
   editToggleLabel: document.getElementById("editToggleLabel"),
@@ -167,7 +188,7 @@ function renderResults() {
   elements.resultsTableBody.innerHTML = "";
   elements.resultsCount.textContent = String(state.searchResults.length);
   elements.resultsSummary.textContent = state.searchResults.length
-    ? "Select a row to open the record in view mode, or use the pencil to jump into edit mode."
+    ? "Open, edit, or try the example legacy actions directly from the landing-page results."
     : "";
 
   if (!state.searchResults.length) {
@@ -184,8 +205,14 @@ function renderResults() {
     row.innerHTML = `
       <td>${escapeHtml(record.sid)}</td>
       <td class="results-action-cell">
-        <button class="results-action" type="button" data-action="view" data-id="${record.id}" title="View record">👁</button>
-        <button class="results-action" type="button" data-action="edit" data-id="${record.id}" title="Modify record">✎</button>
+        <div class="results-action-links">
+          <button class="results-action-link" type="button" data-action="view" data-id="${record.id}" title="View record">View</button>
+          <button class="results-action-link" type="button" data-action="edit" data-id="${record.id}" title="Modify record">Modify</button>
+          <button class="results-action-link" type="button" data-action="delete-arrest" data-id="${record.id}" title="Dummy delete arrest action">Delete A</button>
+          <button class="results-action-link" type="button" data-action="seal-arrest" data-id="${record.id}" title="Dummy seal arrest action">Seal A</button>
+          <button class="results-action-link" type="button" data-action="delete-master" data-id="${record.id}" title="Dummy delete master action">Delete M</button>
+          <button class="results-action-link" type="button" data-action="seal-master" data-id="${record.id}" title="Dummy seal master action">Seal M</button>
+        </div>
       </td>
       <td>${escapeHtml(record.lastName)}</td>
       <td>${escapeHtml(record.firstName)}</td>
@@ -253,6 +280,7 @@ function renderDetail() {
   elements.quickRecordType.textContent = sourceRecord.recordType;
   elements.quickRank.textContent = String(sourceRecord.rank);
   elements.quickUpdated.textContent = sourceRecord.updatedAt;
+  renderLegacyWorkspace(sourceRecord);
 
   const isEditing = state.mode === "edit";
   elements.modeBadge.textContent = isEditing ? "Edit Mode" : "View Mode";
@@ -270,6 +298,131 @@ function renderDetail() {
     input.value = sourceRecord[field] ?? "";
     input.disabled = !isEditing;
   }
+}
+
+function renderLegacyWorkspace(record) {
+  const displaySex = record.sex === "M" ? "MALE" : record.sex === "F" ? "FEMALE" : record.sex;
+  const legacyValues = {
+    legacyLastName: capitalize(record.lastName),
+    legacyDob: record.dob,
+    legacySsn: record.ssn,
+    legacyTcn: record.tcn,
+    legacyFirstName: capitalize(record.firstName),
+    legacyRace: expandRace(record.race),
+    legacyDl: `OK-DL-${record.sid}`,
+    legacyDoc: `DOC-${record.sid.slice(-4)}`,
+    legacyMiddleName: capitalize(record.middleName),
+    legacySex: displaySex,
+    legacySid: record.sid,
+    legacyCourt: "Tulsa County",
+    legacyMoniker: record.alias || "No Moniker",
+    legacyEye: record.eyeColor.toUpperCase(),
+    legacyOtn: `OTN-${record.sid.slice(-5)}`,
+    legacyOca: `OCA-${record.sid.slice(-4)}`,
+    legacySuffix: "N/A",
+    legacyHair: record.hairColor.toUpperCase(),
+    legacyFbi: record.fbi,
+    legacyMnu: `MNU-${record.sid.slice(-3)}`
+  };
+
+  Object.entries(legacyValues).forEach(([key, value]) => {
+    elements[key].value = value;
+  });
+
+  const dummyRows = buildLegacyRows(record);
+  elements.legacyResultsBody.innerHTML = dummyRows.map((row) => `
+    <tr>
+      <td><input class="legacy-checkbox" type="checkbox" aria-label="Select ${escapeHtml(row.lastName)} ${escapeHtml(row.firstName)}"></td>
+      <td>${escapeHtml(row.lastName)}</td>
+      <td>${escapeHtml(row.firstName)}</td>
+      <td>${escapeHtml(row.race)}</td>
+      <td>${escapeHtml(row.sex)}</td>
+      <td>${escapeHtml(row.dob)}</td>
+      <td>${escapeHtml(row.sid)}</td>
+      <td>${escapeHtml(row.tcn)}</td>
+      <td>${escapeHtml(row.arrest)}</td>
+      <td>${escapeHtml(row.auto)}</td>
+    </tr>
+  `).join("");
+}
+
+function buildLegacyRows(record) {
+  const baseName = capitalize(record.lastName);
+  const baseFirst = capitalize(record.firstName);
+  const baseDob = record.dob;
+  const expandedRace = expandRace(record.race);
+  const expandedSex = record.sex === "M" ? "MALE" : record.sex === "F" ? "FEMALE" : record.sex;
+  return [
+    {
+      lastName: `${baseName}`,
+      firstName: `${baseFirst} Demo`,
+      race: expandedRace,
+      sex: expandedSex,
+      dob: baseDob,
+      sid: record.sid,
+      tcn: record.tcn,
+      arrest: record.arrestDate,
+      auto: record.auto
+    },
+    {
+      lastName: `${baseName}-ALT`,
+      firstName: `${baseFirst} Sample`,
+      race: expandedRace,
+      sex: expandedSex,
+      dob: shiftDate(baseDob, 1),
+      sid: `${record.sid.slice(0, -1)}8`,
+      tcn: `C-DMO${record.sid}81`,
+      arrest: "03/11/2026",
+      auto: "Y"
+    },
+    {
+      lastName: `${baseName}`,
+      firstName: "Jordan Example",
+      race: "White",
+      sex: "MALE",
+      dob: "09/08/1988",
+      sid: "257482",
+      tcn: "C-DMO25748231",
+      arrest: "08/14/2025",
+      auto: "Y"
+    },
+    {
+      lastName: "TESTA",
+      firstName: "Corinne Dummy",
+      race: "White",
+      sex: "FEMALE",
+      dob: "05/20/1990",
+      sid: "2049797",
+      tcn: "C-DMO20497977",
+      arrest: "11/18/2024",
+      auto: "Y"
+    }
+  ];
+}
+
+function capitalize(value) {
+  return String(value || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1).toLowerCase())
+    .join(" ");
+}
+
+function expandRace(value) {
+  const map = { W: "White", B: "Black", H: "Hispanic", A: "Asian" };
+  return map[value] || value || "";
+}
+
+function shiftDate(value, deltaDays) {
+  const [month, day, year] = String(value).split("/").map(Number);
+  if (!month || !day || !year) return value;
+  const date = new Date(year, month - 1, day);
+  date.setDate(date.getDate() + deltaDays);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric"
+  }).format(date);
 }
 
 function updateDraftFromForm() {
@@ -408,8 +561,25 @@ elements.resultsTableBody.addEventListener("click", (event) => {
   const actionButton = event.target.closest("[data-action]");
   if (!actionButton) return;
 
-  const mode = actionButton.dataset.action === "edit" ? "edit" : "view";
-  openDetail(actionButton.dataset.id, mode);
+  const { action, id } = actionButton.dataset;
+  if (action === "edit" || action === "view") {
+    const mode = action === "edit" ? "edit" : "view";
+    openDetail(id, mode);
+    return;
+  }
+
+  const actionLabels = {
+    "delete-arrest": "Delete Arrest (dummy action)",
+    "seal-arrest": "Seal Arrest (dummy action)",
+    "delete-master": "Delete Master (dummy action)",
+    "seal-master": "Seal Master (dummy action)"
+  };
+
+  const record = state.records.find((entry) => entry.id === id);
+  const label = actionLabels[action] || "Dummy action";
+  if (record) {
+    window.alert(`${label}\n\nExample only for ${capitalize(record.firstName)} ${capitalize(record.lastName)}.\nNo real data is changed in this proof of concept.`);
+  }
 });
 
 elements.backToSearchButton.addEventListener("click", returnToSearch);
