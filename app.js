@@ -550,36 +550,13 @@ const elements = {
   viewModeTabButton: document.getElementById("viewModeTabButton"),
   editModeTabButton: document.getElementById("editModeTabButton"),
   detailTitle: document.getElementById("detailTitle"),
+  recordHybridBadge: document.getElementById("recordHybridBadge"),
   sidebarPersonName: document.getElementById("sidebarPersonName"),
   sidebarSid: document.getElementById("sidebarSid"),
   sidebarDobNav: document.getElementById("sidebarDobNav"),
   sidebarGenderNav: document.getElementById("sidebarGenderNav"),
+  sidebarRaceNav: document.getElementById("sidebarRaceNav"),
   sidebarModeHint: document.getElementById("sidebarModeHint"),
-  quickTcn: document.getElementById("quickTcn"),
-  quickRecordType: document.getElementById("quickRecordType"),
-  quickRank: document.getElementById("quickRank"),
-  quickUpdated: document.getElementById("quickUpdated"),
-  legacyLastName: document.getElementById("legacyLastName"),
-  legacyDob: document.getElementById("legacyDob"),
-  legacySsn: document.getElementById("legacySsn"),
-  legacyTcn: document.getElementById("legacyTcn"),
-  legacyFirstName: document.getElementById("legacyFirstName"),
-  legacyRace: document.getElementById("legacyRace"),
-  legacyDl: document.getElementById("legacyDl"),
-  legacyDoc: document.getElementById("legacyDoc"),
-  legacyMiddleName: document.getElementById("legacyMiddleName"),
-  legacySex: document.getElementById("legacySex"),
-  legacySid: document.getElementById("legacySid"),
-  legacyCourt: document.getElementById("legacyCourt"),
-  legacyMoniker: document.getElementById("legacyMoniker"),
-  legacyEye: document.getElementById("legacyEye"),
-  legacyOtn: document.getElementById("legacyOtn"),
-  legacyOca: document.getElementById("legacyOca"),
-  legacySuffix: document.getElementById("legacySuffix"),
-  legacyHair: document.getElementById("legacyHair"),
-  legacyFbi: document.getElementById("legacyFbi"),
-  legacyMnu: document.getElementById("legacyMnu"),
-  legacyResultsBody: document.getElementById("legacyResultsBody"),
   detailForm: document.getElementById("detailForm"),
   cancelEditButton: document.getElementById("cancelEditButton"),
   saveButton: document.getElementById("saveButton")
@@ -726,17 +703,15 @@ function renderDetail() {
     .replace(/\s+/g, " ")
     .trim();
   const displayGender = sourceRecord.sex === "M" ? "MALE" : sourceRecord.sex === "F" ? "FEMALE" : sourceRecord.sex;
+  const displayRace = expandRace(sourceRecord.race).toUpperCase();
 
   elements.detailTitle.textContent = `${fullName || "Person"} Record`;
   elements.sidebarPersonName.textContent = (fullName || "Unnamed Person").toUpperCase();
   elements.sidebarSid.textContent = `SID: ${sourceRecord.sid}`;
   elements.sidebarDobNav.textContent = `DOB: ${sourceRecord.dob}`;
   elements.sidebarGenderNav.textContent = `Gender: ${displayGender}`;
-  elements.quickTcn.textContent = sourceRecord.tcn;
-  elements.quickRecordType.textContent = sourceRecord.recordType;
-  elements.quickRank.textContent = String(sourceRecord.rank);
-  elements.quickUpdated.textContent = sourceRecord.updatedAt;
-  renderLegacyWorkspace(sourceRecord);
+  elements.sidebarRaceNav.textContent = `Race: ${displayRace}`;
+  elements.recordHybridBadge.textContent = recordTypeName(sourceRecord.recordType);
 
   const isEditing = state.mode === "edit";
   elements.cancelEditButton.classList.toggle("hidden", !isEditing);
@@ -747,109 +722,9 @@ function renderDetail() {
 
   for (const input of detailInputs) {
     const field = input.dataset.field;
-    input.value = sourceRecord[field] ?? "";
+    input.value = getDetailFieldValue(sourceRecord, field);
     input.disabled = !isEditing;
   }
-}
-
-function renderLegacyWorkspace(record) {
-  const displaySex = record.sex === "M" ? "MALE" : record.sex === "F" ? "FEMALE" : record.sex;
-  const legacyValues = {
-    legacyLastName: capitalize(record.lastName),
-    legacyDob: record.dob,
-    legacySsn: record.ssn,
-    legacyTcn: record.tcn,
-    legacyFirstName: capitalize(record.firstName),
-    legacyRace: expandRace(record.race),
-    legacyDl: `OK-DL-${record.sid}`,
-    legacyDoc: `DOC-${record.sid.slice(-4)}`,
-    legacyMiddleName: capitalize(record.middleName),
-    legacySex: displaySex,
-    legacySid: record.sid,
-    legacyCourt: "Tulsa County",
-    legacyMoniker: record.alias || "No Moniker",
-    legacyEye: record.eyeColor.toUpperCase(),
-    legacyOtn: `OTN-${record.sid.slice(-5)}`,
-    legacyOca: `OCA-${record.sid.slice(-4)}`,
-    legacySuffix: "N/A",
-    legacyHair: record.hairColor.toUpperCase(),
-    legacyFbi: record.fbi,
-    legacyMnu: `MNU-${record.sid.slice(-3)}`
-  };
-
-  Object.entries(legacyValues).forEach(([key, value]) => {
-    elements[key].value = value;
-  });
-
-  const dummyRows = buildLegacyRows(record);
-  elements.legacyResultsBody.innerHTML = dummyRows.map((row) => `
-    <tr>
-      <td><input class="legacy-checkbox" type="checkbox" aria-label="Select ${escapeHtml(row.lastName)} ${escapeHtml(row.firstName)}"></td>
-      <td>${escapeHtml(row.lastName)}</td>
-      <td>${escapeHtml(row.firstName)}</td>
-      <td>${escapeHtml(row.race)}</td>
-      <td>${escapeHtml(row.sex)}</td>
-      <td>${escapeHtml(row.dob)}</td>
-      <td>${escapeHtml(row.sid)}</td>
-      <td>${escapeHtml(row.tcn)}</td>
-      <td>${escapeHtml(row.arrest)}</td>
-      <td>${escapeHtml(row.auto)}</td>
-    </tr>
-  `).join("");
-}
-
-function buildLegacyRows(record) {
-  const baseName = capitalize(record.lastName);
-  const baseFirst = capitalize(record.firstName);
-  const baseDob = record.dob;
-  const expandedRace = expandRace(record.race);
-  const expandedSex = record.sex === "M" ? "MALE" : record.sex === "F" ? "FEMALE" : record.sex;
-  return [
-    {
-      lastName: `${baseName}`,
-      firstName: `${baseFirst} Demo`,
-      race: expandedRace,
-      sex: expandedSex,
-      dob: baseDob,
-      sid: record.sid,
-      tcn: record.tcn,
-      arrest: record.arrestDate,
-      auto: record.auto
-    },
-    {
-      lastName: `${baseName}-ALT`,
-      firstName: `${baseFirst} Sample`,
-      race: expandedRace,
-      sex: expandedSex,
-      dob: shiftDate(baseDob, 1),
-      sid: `${record.sid.slice(0, -1)}8`,
-      tcn: `C-DMO${record.sid}81`,
-      arrest: "03/11/2026",
-      auto: "Y"
-    },
-    {
-      lastName: `${baseName}`,
-      firstName: "Jordan Example",
-      race: "White",
-      sex: "MALE",
-      dob: "09/08/1988",
-      sid: "257482",
-      tcn: "C-DMO25748231",
-      arrest: "08/14/2025",
-      auto: "Y"
-    },
-    {
-      lastName: "TESTA",
-      firstName: "Corinne Dummy",
-      race: "White",
-      sex: "FEMALE",
-      dob: "05/20/1990",
-      sid: "2049797",
-      tcn: "C-DMO20497977",
-      arrest: "11/18/2024",
-      auto: "Y"
-    }
-  ];
 }
 
 function capitalize(value) {
@@ -863,6 +738,11 @@ function capitalize(value) {
 function expandRace(value) {
   const map = { W: "White", B: "Black", H: "Hispanic", A: "Asian" };
   return map[value] || value || "";
+}
+
+function recordTypeName(value) {
+  const map = { Z: "Hybrid", A: "Standard", B: "Supplemental" };
+  return map[value] || value || "Record";
 }
 
 function shiftDate(value, deltaDays) {
@@ -882,8 +762,78 @@ function updateDraftFromForm() {
 
   for (const input of detailInputs) {
     const field = input.dataset.field;
-    state.draftRecord[field] = input.value;
+    setDetailFieldValue(state.draftRecord, field, input.value);
   }
+}
+
+function getDetailFieldValue(record, field) {
+  const defaults = {
+    prefix: "",
+    suffix: "",
+    dnaCollected: "No",
+    photoAvailable: "No",
+    palmPrints: "No",
+    deceased: "No",
+    deceasedDate: "",
+    ncicNumber: "",
+    registeredSexOffender: "No",
+    sexOffenderRegDate: "",
+    sexOffenderExpDate: "",
+    sexOffenderRegNumber: "",
+    tripleIFlag: record.iiiFlag === "Yes" ? "M - Multi-State" : "No",
+    violentCrimeRegistered: "No",
+    convictedFelon: "No",
+    autoRecordLabel: record.auto,
+    jacket: "Yes",
+    fingerprintClass: "PIP0AAAAPMPOAAPMXXP0",
+    afisFingerprintImage: "No",
+    iffsFlag: "No",
+    driverLicense: `OK-DL-${record.sid}`,
+    docNumber: `DOC-${record.sid.slice(-4)}`,
+    otnNumber: `OTN-${record.sid.slice(-5)}`,
+    ocaNumber: `OCA-${record.sid.slice(-4)}`,
+    mnuNumber: `MNU-${record.sid.slice(-3)}`,
+    courtName: "Tulsa County",
+    evaluatorName: "Kristie Banks",
+    reviewQueue: "Hybrid Review Queue"
+  };
+
+  if (field === "recordTypeLabel") return `${record.recordType} - ${recordTypeName(record.recordType)}`;
+  if (field === "genderLabel") return `${record.sex} - ${record.sex === "M" ? "MALE" : record.sex === "F" ? "FEMALE" : record.sex}`;
+  if (field === "raceLabel") return `${record.race} - ${expandRace(record.race).toUpperCase()}`;
+  return record[field] ?? defaults[field] ?? "";
+}
+
+function setDetailFieldValue(record, field, value) {
+  if (field === "recordTypeLabel") {
+    record.recordType = String(value).split("-")[0].trim() || value;
+    return;
+  }
+
+  if (field === "genderLabel") {
+    const normalized = String(value).toUpperCase();
+    if (normalized.startsWith("M")) record.sex = "M";
+    else if (normalized.startsWith("F")) record.sex = "F";
+    else record.sex = value;
+    return;
+  }
+
+  if (field === "raceLabel") {
+    const normalized = String(value).toUpperCase();
+    if (normalized.startsWith("W")) record.race = "W";
+    else if (normalized.startsWith("B")) record.race = "B";
+    else if (normalized.startsWith("H")) record.race = "H";
+    else if (normalized.startsWith("A")) record.race = "A";
+    else record.race = value;
+    return;
+  }
+
+  if (field === "autoRecordLabel") {
+    record.auto = value;
+    return;
+  }
+
+  record[field] = value;
 }
 
 function saveDraft() {

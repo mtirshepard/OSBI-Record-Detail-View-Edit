@@ -183,6 +183,9 @@
               <h1 id="detailTitle" class="detail-title">Person Master</h1>
             </div>
           </div>
+          <div class="detail-topbar-group">
+            <span id="recordHybridBadge" class="record-hybrid-badge">Hybrid</span>
+          </div>
         </div>
 
         <div class="detail-mode-tabs" role="tablist" aria-label="Detail view mode">
@@ -198,6 +201,7 @@
                 <span id="sidebarSid">SID: 123456</span>
                 <span id="sidebarDobNav">DOB: 12/12/1962</span>
                 <span id="sidebarGenderNav">Gender: MALE</span>
+                <span id="sidebarRaceNav">Race: WHITE</span>
               </div>
             </div>
 
@@ -208,7 +212,7 @@
                 <button type="button" class="record-nav-link">Person Info</button>
                 <div class="record-subnav">
                   <button type="button" class="record-subnav-link">Moniker</button>
-                  <button type="button" class="record-subnav-link">D/S</button>
+                  <button type="button" class="record-subnav-link">IDs</button>
                   <button type="button" class="record-subnav-link">SMT</button>
                   <button type="button" class="record-subnav-link">Address</button>
                   <button type="button" class="record-subnav-link">Employer</button>
@@ -226,174 +230,31 @@
           </aside>
 
           <form id="detailForm" class="stack-md">
-            <section class="osbi-card card-pad-lg record-overview">
-              <div class="dummy-banner">Proof of concept only. All names, identifiers, actions, and search rows below are dummy example data.</div>
-              <dl class="record-meta-grid">
-                <div class="quick-fact">
-                  <dt>TCN</dt>
-                  <dd id="quickTcn"></dd>
-                </div>
-                <div class="quick-fact">
-                  <dt>Record Type</dt>
-                  <dd id="quickRecordType"></dd>
-                </div>
-                <div class="quick-fact">
-                  <dt>Rank</dt>
-                  <dd id="quickRank"></dd>
-                </div>
-                <div class="quick-fact">
-                  <dt>Last Updated</dt>
-                  <dd id="quickUpdated"></dd>
-                </div>
-              </dl>
-            </section>
-
             <section class="osbi-card legacy-workspace-card">
-              <div class="legacy-tabs" role="tablist" aria-label="Legacy action workspace">
+              <div class="legacy-tabs" role="tablist" aria-label="Legacy record workspace">
                 <button type="button" class="legacy-tab legacy-tab-active">Record Management</button>
                 <button type="button" class="legacy-tab">Consolidate SID Info</button>
                 <button type="button" class="legacy-tab">Rejected Card Log</button>
-              </div>
-
-              <div class="legacy-panel">
-                <div class="legacy-panel-grid">
-                  <label class="legacy-field">
-                    <span>Last Name</span>
-                    <input id="legacyLastName" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>DOB</span>
-                    <input id="legacyDob" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>SSN</span>
-                    <input id="legacySsn" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>TCN</span>
-                    <input id="legacyTcn" type="text" readonly>
-                  </label>
-
-                  <label class="legacy-field">
-                    <span>First Name</span>
-                    <input id="legacyFirstName" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>Race</span>
-                    <input id="legacyRace" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>DL</span>
-                    <input id="legacyDl" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>DOC</span>
-                    <input id="legacyDoc" type="text" readonly>
-                  </label>
-
-                  <label class="legacy-field">
-                    <span>Mid. Name</span>
-                    <input id="legacyMiddleName" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>Sex</span>
-                    <input id="legacySex" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>SID</span>
-                    <input id="legacySid" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>Court</span>
-                    <input id="legacyCourt" type="text" readonly>
-                  </label>
-
-                  <label class="legacy-field">
-                    <span>Moniker</span>
-                    <input id="legacyMoniker" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>Eye</span>
-                    <input id="legacyEye" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>OTN</span>
-                    <input id="legacyOtn" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>OCA</span>
-                    <input id="legacyOca" type="text" readonly>
-                  </label>
-
-                  <label class="legacy-field">
-                    <span>Suffix</span>
-                    <input id="legacySuffix" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>Hair</span>
-                    <input id="legacyHair" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>FBI</span>
-                    <input id="legacyFbi" type="text" readonly>
-                  </label>
-                  <label class="legacy-field">
-                    <span>MNU</span>
-                    <input id="legacyMnu" type="text" readonly>
-                  </label>
-                </div>
-
-                <div class="legacy-button-row">
-                  <button type="button" class="legacy-button">Search</button>
-                  <button type="button" class="legacy-button legacy-button-secondary">Reset</button>
-                </div>
-
-                <section class="legacy-results-card">
-                  <div class="legacy-results-title">Search Results</div>
-                  <div class="legacy-results-scroll">
-                    <table class="legacy-results-table">
-                      <thead>
-                        <tr>
-                          <th>Select</th>
-                          <th>Last Name</th>
-                          <th>First Name</th>
-                          <th>Race</th>
-                          <th>Sex</th>
-                          <th>DOB</th>
-                          <th>SID</th>
-                          <th>TCN</th>
-                          <th>Arrest</th>
-                          <th>Auto</th>
-                        </tr>
-                      </thead>
-                      <tbody id="legacyResultsBody"></tbody>
-                    </table>
-                  </div>
-                </section>
               </div>
             </section>
 
             <section class="osbi-card card-pad-lg">
               <div class="section-header">
                 <h2 class="section-title">Person Master</h2>
-                <p class="section-copy">Core identity and source-system values.</p>
+                <p class="section-copy">Core identity and person master details.</p>
               </div>
-              <div class="detail-grid">
+              <div class="person-master-grid">
+                <label class="form-field">
+                  <span>Record Type</span>
+                  <input data-field="recordTypeLabel" type="text">
+                </label>
                 <label class="form-field">
                   <span>SID</span>
                   <input data-field="sid" type="text">
                 </label>
                 <label class="form-field">
-                  <span>FBI</span>
-                  <input data-field="fbi" type="text">
-                </label>
-                <label class="form-field">
-                  <span>TCN</span>
-                  <input data-field="tcn" type="text">
-                </label>
-                <label class="form-field">
-                  <span>Record Type</span>
-                  <input data-field="recordType" type="text">
+                  <span>Date of Birth</span>
+                  <input data-field="dob" type="text">
                 </label>
                 <label class="form-field">
                   <span>Last Name</span>
@@ -408,8 +269,96 @@
                   <input data-field="middleName" type="text">
                 </label>
                 <label class="form-field">
-                  <span>Alias</span>
-                  <input data-field="alias" type="text">
+                  <span>Prefix</span>
+                  <input data-field="prefix" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Suffix</span>
+                  <input data-field="suffix" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Gender</span>
+                  <input data-field="genderLabel" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Race</span>
+                  <input data-field="raceLabel" type="text">
+                </label>
+                <label class="form-field">
+                  <span>FBI #</span>
+                  <input data-field="fbi" type="text">
+                </label>
+                <label class="form-field">
+                  <span>DNA</span>
+                  <input data-field="dnaCollected" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Photo</span>
+                  <input data-field="photoAvailable" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Palm Prints</span>
+                  <input data-field="palmPrints" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Deceased</span>
+                  <input data-field="deceased" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Deceased Date</span>
+                  <input data-field="deceasedDate" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Ncic Number</span>
+                  <input data-field="ncicNumber" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Registered Sex Offender</span>
+                  <input data-field="registeredSexOffender" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Sex Offender Reg. Date</span>
+                  <input data-field="sexOffenderRegDate" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Sex Offender Exp. Date</span>
+                  <input data-field="sexOffenderExpDate" type="text">
+                </label>
+                <label class="form-field field-span-2">
+                  <span>Sex Offender Reg. #</span>
+                  <input data-field="sexOffenderRegNumber" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Triple I Flag</span>
+                  <input data-field="tripleIFlag" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Violent Crime Registered</span>
+                  <input data-field="violentCrimeRegistered" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Convicted Felon</span>
+                  <input data-field="convictedFelon" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Auto Record</span>
+                  <input data-field="autoRecordLabel" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Jacket</span>
+                  <input data-field="jacket" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Fingerprint Class</span>
+                  <input data-field="fingerprintClass" type="text">
+                </label>
+                <label class="form-field">
+                  <span>AFIS Fingerprint Image</span>
+                  <input data-field="afisFingerprintImage" type="text">
+                </label>
+                <label class="form-field">
+                  <span>IFFS Flag</span>
+                  <input data-field="iffsFlag" type="text">
                 </label>
               </div>
             </section>
@@ -417,28 +366,12 @@
             <section class="osbi-card card-pad-lg">
               <div class="section-header">
                 <h2 class="section-title">Person Info</h2>
-                <p class="section-copy">Demographics and descriptive fields.</p>
+                <p class="section-copy">Additional identity, physical description, and contact details.</p>
               </div>
               <div class="detail-grid">
                 <label class="form-field">
-                  <span>Date of Birth</span>
-                  <input data-field="dob" type="text">
-                </label>
-                <label class="form-field">
-                  <span>Sex</span>
-                  <select data-field="sex">
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                  </select>
-                </label>
-                <label class="form-field">
-                  <span>Race</span>
-                  <select data-field="race">
-                    <option value="W">W</option>
-                    <option value="B">B</option>
-                    <option value="H">H</option>
-                    <option value="A">A</option>
-                  </select>
+                  <span>Moniker</span>
+                  <input data-field="alias" type="text">
                 </label>
                 <label class="form-field">
                   <span>SSN</span>
@@ -460,54 +393,6 @@
                   <span>Hair Color</span>
                   <input data-field="hairColor" type="text">
                 </label>
-              </div>
-            </section>
-
-            <section class="osbi-card card-pad-lg">
-              <div class="section-header">
-                <h2 class="section-title">Record Quality Control</h2>
-                <p class="section-copy">Status, workflow, and quality indicators.</p>
-              </div>
-              <div class="detail-grid">
-                <label class="form-field">
-                  <span>Rank</span>
-                  <input data-field="rank" type="number" min="1">
-                </label>
-                <label class="form-field">
-                  <span>Auto</span>
-                  <select data-field="auto">
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </label>
-                <label class="form-field">
-                  <span>III Flag</span>
-                  <select data-field="iiiFlag">
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </label>
-                <label class="form-field">
-                  <span>Status</span>
-                  <select data-field="status">
-                    <option value="View Ready">View Ready</option>
-                    <option value="Needs Review">Needs Review</option>
-                    <option value="Ready For Edit">Ready For Edit</option>
-                  </select>
-                </label>
-                <label class="form-field field-span-full">
-                  <span>QC Notes</span>
-                  <textarea data-field="qcNotes" rows="4"></textarea>
-                </label>
-              </div>
-            </section>
-
-            <section class="osbi-card card-pad-lg">
-              <div class="section-header">
-                <h2 class="section-title">Address And Tracking</h2>
-                <p class="section-copy">Search-result fields and operational context.</p>
-              </div>
-              <div class="detail-grid">
                 <label class="form-field field-span-2">
                   <span>Address</span>
                   <input data-field="address" type="text">
@@ -525,9 +410,121 @@
                   <input data-field="postalCode" type="text">
                 </label>
                 <label class="form-field">
+                  <span>DL</span>
+                  <input data-field="driverLicense" type="text">
+                </label>
+                <label class="form-field">
+                  <span>DOC</span>
+                  <input data-field="docNumber" type="text">
+                </label>
+                <label class="form-field">
+                  <span>OTN</span>
+                  <input data-field="otnNumber" type="text">
+                </label>
+                <label class="form-field">
+                  <span>OCA</span>
+                  <input data-field="ocaNumber" type="text">
+                </label>
+                <label class="form-field">
+                  <span>MNU</span>
+                  <input data-field="mnuNumber" type="text">
+                </label>
+              </div>
+            </section>
+
+            <section class="osbi-card card-pad-lg">
+              <div class="section-header">
+                <h2 class="section-title">Record Quality Control</h2>
+                <p class="section-copy">Operational review, matching, and evaluator tracking details.</p>
+              </div>
+              <div class="detail-grid">
+                <label class="form-field">
+                  <span>Status</span>
+                  <input data-field="status" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Rank</span>
+                  <input data-field="rank" type="number" min="1">
+                </label>
+                <label class="form-field">
+                  <span>Auto</span>
+                  <input data-field="auto" type="text">
+                </label>
+                <label class="form-field">
                   <span>Arrest Date</span>
                   <input data-field="arrestDate" type="text">
                 </label>
+                <label class="form-field">
+                  <span>Court</span>
+                  <input data-field="courtName" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Last Updated</span>
+                  <input data-field="updatedAt" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Evaluator</span>
+                  <input data-field="evaluatorName" type="text">
+                </label>
+                <label class="form-field">
+                  <span>Review Queue</span>
+                  <input data-field="reviewQueue" type="text">
+                </label>
+                <label class="form-field field-span-full">
+                  <span>QC Notes</span>
+                  <textarea data-field="qcNotes" rows="4"></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="osbi-card card-pad-lg">
+              <div class="section-header">
+                <h2 class="section-title">Person Status History</h2>
+                <p class="section-copy">Mocked status history to show the record depth users expect to see.</p>
+              </div>
+              <div class="status-history-list">
+                <article class="status-history-item">
+                  <div class="status-history-date">04/24/2026 08:18 AM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">QC Review Reopened</div>
+                    <div class="status-history-copy">Dummy record reopened for additional quality control verification during client demonstration.</div>
+                  </div>
+                </article>
+                <article class="status-history-item">
+                  <div class="status-history-date">04/22/2026 09:12 AM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">Record Reviewed</div>
+                    <div class="status-history-copy">Dummy evaluator review completed and record left in active hybrid status.</div>
+                  </div>
+                </article>
+                <article class="status-history-item">
+                  <div class="status-history-date">03/29/2026 04:06 PM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">Person Info Updated</div>
+                    <div class="status-history-copy">Dummy address and identification values were synchronized from a secondary source system.</div>
+                  </div>
+                </article>
+                <article class="status-history-item">
+                  <div class="status-history-date">03/14/2026 02:45 PM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">Fingerprint Data Updated</div>
+                    <div class="status-history-copy">Dummy AFIS image and classification information synced into the record.</div>
+                  </div>
+                </article>
+                <article class="status-history-item">
+                  <div class="status-history-date">02/02/2026 10:27 AM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">Identity Match Confirmed</div>
+                    <div class="status-history-copy">Dummy SID, FBI, and demographic match indicators were confirmed for the proof-of-concept record.</div>
+                  </div>
+                </article>
+                <article class="status-history-item">
+                  <div class="status-history-date">01/08/2026 11:03 AM</div>
+                  <div class="status-history-body">
+                    <div class="status-history-title">Hybrid Record Created</div>
+                    <div class="status-history-copy">Initial mock person record created for demonstration purposes.</div>
+                  </div>
+                </article>
               </div>
             </section>
 

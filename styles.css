@@ -687,6 +687,13 @@ textarea {
   overflow: hidden;
 }
 
+.legacy-static-panel {
+  background: #fff;
+  color: #4f6788;
+  font-size: 15px;
+  padding: 14px 16px 16px;
+}
+
 .legacy-tabs {
   background: linear-gradient(180deg, #f0f6ff 0%, #ddeafd 100%);
   border-bottom: 1px solid #bfcfe7;
@@ -832,6 +839,21 @@ textarea {
   text-decoration: underline;
 }
 
+.person-master-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.record-hybrid-badge {
+  background: var(--osbi-blue);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 16px;
+}
+
 .section-header {
   align-items: end;
   border-bottom: 1px solid var(--osbi-border-soft);
@@ -854,6 +876,44 @@ textarea {
   color: var(--osbi-muted);
   font-size: 1rem;
   margin: 0;
+}
+
+.status-history-list {
+  display: grid;
+  gap: 14px;
+}
+
+.status-history-item {
+  align-items: start;
+  background: #f8fbff;
+  border: 1px solid #dde6f2;
+  border-radius: 6px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 180px minmax(0, 1fr);
+  padding: 14px 16px;
+}
+
+.status-history-date {
+  color: #49607f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-history-body {
+  display: grid;
+  gap: 4px;
+}
+
+.status-history-title {
+  color: #20314b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.status-history-copy {
+  color: var(--osbi-muted);
+  font-size: 15px;
 }
 
 .quick-facts-list {
@@ -896,6 +956,7 @@ textarea {
 
 @media (max-width: 1280px) {
   .detail-grid,
+  .person-master-grid,
   .search-grid,
   .advanced-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -955,11 +1016,16 @@ textarea {
   .search-grid,
   .advanced-panel,
   .detail-grid,
-  .record-meta-grid {
+  .record-meta-grid,
+  .person-master-grid {
     grid-template-columns: 1fr;
   }
 
   .legacy-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-history-item {
     grid-template-columns: 1fr;
   }
 }
