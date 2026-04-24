@@ -183,13 +183,11 @@
               <h1 id="detailTitle" class="detail-title">Person Master</h1>
             </div>
           </div>
-          <div class="detail-topbar-group">
-            <span id="modeBadge" class="mode-badge mode-badge-view">View Mode</span>
-            <button id="editToggleButton" type="button" class="osbi-button-primary">
-              <span id="editToggleIcon">✎</span>
-              <span id="editToggleLabel">Edit Record</span>
-            </button>
-          </div>
+        </div>
+
+        <div class="detail-mode-tabs" role="tablist" aria-label="Detail view mode">
+          <button id="viewModeTabButton" type="button" class="detail-mode-tab detail-mode-tab-active">View Mode</button>
+          <button id="editModeTabButton" type="button" class="detail-mode-tab">Edit Mode</button>
         </div>
 
         <div class="detail-layout">
@@ -223,9 +221,7 @@
             </nav>
 
             <div class="record-sidebar-actions">
-              <button id="viewEditModeButton" type="button" class="view-edit-button">
-                View And Edit
-              </button>
+              <div id="sidebarModeHint" class="sidebar-mode-hint">Read-only review mode</div>
             </div>
           </aside>
 

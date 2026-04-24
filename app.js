@@ -60,6 +60,456 @@ const seedRecords = [
     state: "OK",
     postalCode: "74103",
     updatedAt: "04/22/2026 9:12 AM"
+  },
+  {
+    id: "person-100001",
+    sid: "100001",
+    fbi: "FBI-100001",
+    tcn: "C-TST10000101",
+    recordType: "A",
+    arrestDate: "01/15/2026",
+    auto: "Yes",
+    rank: 3,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "alex",
+    middleName: "q",
+    alias: "Alex Test",
+    dob: "03/05/1991",
+    sex: "M",
+    race: "W",
+    ssn: "333-44-5501",
+    height: "5'11\"",
+    weight: "188",
+    eyeColor: "Blue",
+    hairColor: "Brown",
+    qcNotes: "Demo record for search grid volume testing.",
+    address: "100 Main Demo St",
+    city: "Norman",
+    state: "OK",
+    postalCode: "73069",
+    updatedAt: "04/21/2026 10:21 AM"
+  },
+  {
+    id: "person-100002",
+    sid: "100002",
+    fbi: "FBI-100002",
+    tcn: "C-TST10000201",
+    recordType: "B",
+    arrestDate: "01/22/2026",
+    auto: "No",
+    rank: 4,
+    iiiFlag: "Yes",
+    status: "Needs Review",
+    lastName: "test",
+    firstName: "amber",
+    middleName: "l",
+    alias: "Amber Test",
+    dob: "08/11/1994",
+    sex: "F",
+    race: "W",
+    ssn: "333-44-5502",
+    height: "5'6\"",
+    weight: "136",
+    eyeColor: "Green",
+    hairColor: "Blonde",
+    qcNotes: "Demo record for client review.",
+    address: "102 Main Demo St",
+    city: "Edmond",
+    state: "OK",
+    postalCode: "73013",
+    updatedAt: "04/21/2026 10:24 AM"
+  },
+  {
+    id: "person-100003",
+    sid: "100003",
+    fbi: "FBI-100003",
+    tcn: "C-TST10000301",
+    recordType: "Z",
+    arrestDate: "01/29/2026",
+    auto: "Yes",
+    rank: 5,
+    iiiFlag: "No",
+    status: "Ready For Edit",
+    lastName: "test",
+    firstName: "brian",
+    middleName: "k",
+    alias: "B. Test",
+    dob: "11/23/1989",
+    sex: "M",
+    race: "B",
+    ssn: "333-44-5503",
+    height: "6'2\"",
+    weight: "210",
+    eyeColor: "Brown",
+    hairColor: "Black",
+    qcNotes: "Demo record for edit-mode examples.",
+    address: "103 Main Demo St",
+    city: "Broken Arrow",
+    state: "OK",
+    postalCode: "74012",
+    updatedAt: "04/21/2026 10:27 AM"
+  },
+  {
+    id: "person-100004",
+    sid: "100004",
+    fbi: "FBI-100004",
+    tcn: "C-TST10000401",
+    recordType: "A",
+    arrestDate: "02/02/2026",
+    auto: "No",
+    rank: 6,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "carla",
+    middleName: "n",
+    alias: "Carla Test",
+    dob: "05/09/1987",
+    sex: "F",
+    race: "H",
+    ssn: "333-44-5504",
+    height: "5'8\"",
+    weight: "149",
+    eyeColor: "Brown",
+    hairColor: "Black",
+    qcNotes: "Demo record set four.",
+    address: "104 Main Demo St",
+    city: "Stillwater",
+    state: "OK",
+    postalCode: "74074",
+    updatedAt: "04/21/2026 10:30 AM"
+  },
+  {
+    id: "person-100005",
+    sid: "100005",
+    fbi: "FBI-100005",
+    tcn: "C-TST10000501",
+    recordType: "B",
+    arrestDate: "02/08/2026",
+    auto: "Yes",
+    rank: 7,
+    iiiFlag: "Yes",
+    status: "Needs Review",
+    lastName: "test",
+    firstName: "derek",
+    middleName: "p",
+    alias: "Derek Test",
+    dob: "07/14/1993",
+    sex: "M",
+    race: "A",
+    ssn: "333-44-5505",
+    height: "5'10\"",
+    weight: "173",
+    eyeColor: "Hazel",
+    hairColor: "Black",
+    qcNotes: "Demo record set five.",
+    address: "105 Main Demo St",
+    city: "Lawton",
+    state: "OK",
+    postalCode: "73505",
+    updatedAt: "04/21/2026 10:33 AM"
+  },
+  {
+    id: "person-100006",
+    sid: "100006",
+    fbi: "FBI-100006",
+    tcn: "C-TST10000601",
+    recordType: "Z",
+    arrestDate: "02/15/2026",
+    auto: "No",
+    rank: 8,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "elena",
+    middleName: "r",
+    alias: "Elena Test",
+    dob: "12/01/1995",
+    sex: "F",
+    race: "W",
+    ssn: "333-44-5506",
+    height: "5'5\"",
+    weight: "128",
+    eyeColor: "Blue",
+    hairColor: "Brown",
+    qcNotes: "Demo record set six.",
+    address: "106 Main Demo St",
+    city: "Enid",
+    state: "OK",
+    postalCode: "73701",
+    updatedAt: "04/21/2026 10:36 AM"
+  },
+  {
+    id: "person-100007",
+    sid: "100007",
+    fbi: "FBI-100007",
+    tcn: "C-TST10000701",
+    recordType: "A",
+    arrestDate: "02/21/2026",
+    auto: "Yes",
+    rank: 9,
+    iiiFlag: "Yes",
+    status: "Ready For Edit",
+    lastName: "test",
+    firstName: "frank",
+    middleName: "s",
+    alias: "Frank Test",
+    dob: "09/17/1985",
+    sex: "M",
+    race: "B",
+    ssn: "333-44-5507",
+    height: "6'1\"",
+    weight: "201",
+    eyeColor: "Brown",
+    hairColor: "Gray",
+    qcNotes: "Demo record set seven.",
+    address: "107 Main Demo St",
+    city: "Muskogee",
+    state: "OK",
+    postalCode: "74401",
+    updatedAt: "04/21/2026 10:39 AM"
+  },
+  {
+    id: "person-100008",
+    sid: "100008",
+    fbi: "FBI-100008",
+    tcn: "C-TST10000801",
+    recordType: "B",
+    arrestDate: "02/28/2026",
+    auto: "No",
+    rank: 10,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "grace",
+    middleName: "t",
+    alias: "Grace Test",
+    dob: "10/10/1992",
+    sex: "F",
+    race: "H",
+    ssn: "333-44-5508",
+    height: "5'7\"",
+    weight: "140",
+    eyeColor: "Green",
+    hairColor: "Brown",
+    qcNotes: "Demo record set eight.",
+    address: "108 Main Demo St",
+    city: "Shawnee",
+    state: "OK",
+    postalCode: "74801",
+    updatedAt: "04/21/2026 10:42 AM"
+  },
+  {
+    id: "person-100009",
+    sid: "100009",
+    fbi: "FBI-100009",
+    tcn: "C-TST10000901",
+    recordType: "Z",
+    arrestDate: "03/03/2026",
+    auto: "Yes",
+    rank: 11,
+    iiiFlag: "Yes",
+    status: "Needs Review",
+    lastName: "test",
+    firstName: "henry",
+    middleName: "u",
+    alias: "Henry Test",
+    dob: "02/19/1988",
+    sex: "M",
+    race: "W",
+    ssn: "333-44-5509",
+    height: "6'0\"",
+    weight: "184",
+    eyeColor: "Hazel",
+    hairColor: "Black",
+    qcNotes: "Demo record set nine.",
+    address: "109 Main Demo St",
+    city: "Moore",
+    state: "OK",
+    postalCode: "73160",
+    updatedAt: "04/21/2026 10:45 AM"
+  },
+  {
+    id: "person-100010",
+    sid: "100010",
+    fbi: "FBI-100010",
+    tcn: "C-TST10001001",
+    recordType: "A",
+    arrestDate: "03/11/2026",
+    auto: "No",
+    rank: 12,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "isla",
+    middleName: "v",
+    alias: "Isla Test",
+    dob: "04/25/1997",
+    sex: "F",
+    race: "A",
+    ssn: "333-44-5510",
+    height: "5'4\"",
+    weight: "121",
+    eyeColor: "Brown",
+    hairColor: "Black",
+    qcNotes: "Demo record set ten.",
+    address: "110 Main Demo St",
+    city: "Owasso",
+    state: "OK",
+    postalCode: "74055",
+    updatedAt: "04/21/2026 10:48 AM"
+  },
+  {
+    id: "person-100011",
+    sid: "100011",
+    fbi: "FBI-100011",
+    tcn: "C-TST10001101",
+    recordType: "B",
+    arrestDate: "03/17/2026",
+    auto: "Yes",
+    rank: 13,
+    iiiFlag: "Yes",
+    status: "Ready For Edit",
+    lastName: "test",
+    firstName: "jack",
+    middleName: "w",
+    alias: "Jack Test",
+    dob: "01/30/1990",
+    sex: "M",
+    race: "B",
+    ssn: "333-44-5511",
+    height: "5'9\"",
+    weight: "176",
+    eyeColor: "Brown",
+    hairColor: "Brown",
+    qcNotes: "Demo record set eleven.",
+    address: "111 Main Demo St",
+    city: "Yukon",
+    state: "OK",
+    postalCode: "73099",
+    updatedAt: "04/21/2026 10:51 AM"
+  },
+  {
+    id: "person-100012",
+    sid: "100012",
+    fbi: "FBI-100012",
+    tcn: "C-TST10001201",
+    recordType: "Z",
+    arrestDate: "03/24/2026",
+    auto: "No",
+    rank: 14,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "karen",
+    middleName: "x",
+    alias: "Karen Test",
+    dob: "06/06/1986",
+    sex: "F",
+    race: "W",
+    ssn: "333-44-5512",
+    height: "5'6\"",
+    weight: "134",
+    eyeColor: "Blue",
+    hairColor: "Red",
+    qcNotes: "Demo record set twelve.",
+    address: "112 Main Demo St",
+    city: "Bartlesville",
+    state: "OK",
+    postalCode: "74003",
+    updatedAt: "04/21/2026 10:54 AM"
+  },
+  {
+    id: "person-100013",
+    sid: "100013",
+    fbi: "FBI-100013",
+    tcn: "C-TST10001301",
+    recordType: "A",
+    arrestDate: "03/30/2026",
+    auto: "Yes",
+    rank: 15,
+    iiiFlag: "Yes",
+    status: "Needs Review",
+    lastName: "test",
+    firstName: "liam",
+    middleName: "y",
+    alias: "Liam Test",
+    dob: "07/27/1998",
+    sex: "M",
+    race: "H",
+    ssn: "333-44-5513",
+    height: "6'0\"",
+    weight: "190",
+    eyeColor: "Brown",
+    hairColor: "Black",
+    qcNotes: "Demo record set thirteen.",
+    address: "113 Main Demo St",
+    city: "Ardmore",
+    state: "OK",
+    postalCode: "73401",
+    updatedAt: "04/21/2026 10:57 AM"
+  },
+  {
+    id: "person-100014",
+    sid: "100014",
+    fbi: "FBI-100014",
+    tcn: "C-TST10001401",
+    recordType: "B",
+    arrestDate: "04/06/2026",
+    auto: "No",
+    rank: 16,
+    iiiFlag: "No",
+    status: "View Ready",
+    lastName: "test",
+    firstName: "mia",
+    middleName: "z",
+    alias: "Mia Test",
+    dob: "11/12/1999",
+    sex: "F",
+    race: "A",
+    ssn: "333-44-5514",
+    height: "5'5\"",
+    weight: "125",
+    eyeColor: "Hazel",
+    hairColor: "Brown",
+    qcNotes: "Demo record set fourteen.",
+    address: "114 Main Demo St",
+    city: "Claremore",
+    state: "OK",
+    postalCode: "74017",
+    updatedAt: "04/21/2026 11:00 AM"
+  },
+  {
+    id: "person-100015",
+    sid: "100015",
+    fbi: "FBI-100015",
+    tcn: "C-TST10001501",
+    recordType: "Z",
+    arrestDate: "04/12/2026",
+    auto: "Yes",
+    rank: 17,
+    iiiFlag: "Yes",
+    status: "Ready For Edit",
+    lastName: "test",
+    firstName: "noah",
+    middleName: "a",
+    alias: "Noah Test",
+    dob: "12/18/1991",
+    sex: "M",
+    race: "W",
+    ssn: "333-44-5515",
+    height: "5'11\"",
+    weight: "182",
+    eyeColor: "Green",
+    hairColor: "Brown",
+    qcNotes: "Demo record set fifteen.",
+    address: "115 Main Demo St",
+    city: "Sapulpa",
+    state: "OK",
+    postalCode: "74066",
+    updatedAt: "04/21/2026 11:03 AM"
   }
 ];
 
@@ -67,7 +517,7 @@ const state = {
   records: loadRecords(),
   searchFilters: {
     lastName: "test",
-    firstName: "test",
+    firstName: "",
     middleName: "",
     dob: "",
     ssn: "",
@@ -97,11 +547,14 @@ const elements = {
   resultsCount: document.getElementById("resultsCount"),
   resultsSummary: document.getElementById("resultsSummary"),
   backToSearchButton: document.getElementById("backToSearchButton"),
+  viewModeTabButton: document.getElementById("viewModeTabButton"),
+  editModeTabButton: document.getElementById("editModeTabButton"),
   detailTitle: document.getElementById("detailTitle"),
   sidebarPersonName: document.getElementById("sidebarPersonName"),
   sidebarSid: document.getElementById("sidebarSid"),
   sidebarDobNav: document.getElementById("sidebarDobNav"),
   sidebarGenderNav: document.getElementById("sidebarGenderNav"),
+  sidebarModeHint: document.getElementById("sidebarModeHint"),
   quickTcn: document.getElementById("quickTcn"),
   quickRecordType: document.getElementById("quickRecordType"),
   quickRank: document.getElementById("quickRank"),
@@ -127,11 +580,6 @@ const elements = {
   legacyFbi: document.getElementById("legacyFbi"),
   legacyMnu: document.getElementById("legacyMnu"),
   legacyResultsBody: document.getElementById("legacyResultsBody"),
-  modeBadge: document.getElementById("modeBadge"),
-  editToggleButton: document.getElementById("editToggleButton"),
-  editToggleLabel: document.getElementById("editToggleLabel"),
-  editToggleIcon: document.getElementById("editToggleIcon"),
-  viewEditModeButton: document.getElementById("viewEditModeButton"),
   detailForm: document.getElementById("detailForm"),
   cancelEditButton: document.getElementById("cancelEditButton"),
   saveButton: document.getElementById("saveButton")
@@ -232,7 +680,7 @@ function renderResults() {
     row.addEventListener("click", (event) => {
       const actionButton = event.target.closest("[data-action]");
       if (actionButton) return;
-      openDetail(record.id, "view");
+      openInViewMode(record.id);
     });
 
     elements.resultsTableBody.appendChild(row);
@@ -251,6 +699,14 @@ function openDetail(recordId, mode) {
   elements.searchView.classList.add("hidden");
   elements.detailView.classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openInViewMode(recordId) {
+  openDetail(recordId, "view");
+}
+
+function openInEditMode(recordId) {
+  openDetail(recordId, "edit");
 }
 
 function returnToSearch() {
@@ -283,15 +739,11 @@ function renderDetail() {
   renderLegacyWorkspace(sourceRecord);
 
   const isEditing = state.mode === "edit";
-  elements.modeBadge.textContent = isEditing ? "Edit Mode" : "View Mode";
-  elements.modeBadge.className = isEditing
-    ? "mode-badge mode-badge-edit"
-    : "mode-badge mode-badge-view";
-  elements.editToggleLabel.textContent = isEditing ? "View Record" : "Edit Record";
-  elements.editToggleIcon.textContent = isEditing ? "👁" : "✎";
-  elements.viewEditModeButton.textContent = isEditing ? "Switch To View" : "View And Edit";
   elements.cancelEditButton.classList.toggle("hidden", !isEditing);
   elements.saveButton.classList.toggle("hidden", !isEditing);
+  elements.viewModeTabButton.className = isEditing ? "detail-mode-tab" : "detail-mode-tab detail-mode-tab-active";
+  elements.editModeTabButton.className = isEditing ? "detail-mode-tab detail-mode-tab-active" : "detail-mode-tab";
+  elements.sidebarModeHint.textContent = isEditing ? "Editing enabled for this record" : "Read-only review mode";
 
   for (const input of detailInputs) {
     const field = input.dataset.field;
@@ -488,7 +940,7 @@ function collectSearchFilters() {
 function resetSearch() {
   state.searchFilters = {
     lastName: "test",
-    firstName: "test",
+    firstName: "",
     middleName: "",
     dob: "",
     ssn: "",
@@ -562,9 +1014,13 @@ elements.resultsTableBody.addEventListener("click", (event) => {
   if (!actionButton) return;
 
   const { action, id } = actionButton.dataset;
-  if (action === "edit" || action === "view") {
-    const mode = action === "edit" ? "edit" : "view";
-    openDetail(id, mode);
+  if (action === "view") {
+    openInViewMode(id);
+    return;
+  }
+
+  if (action === "edit") {
+    openInEditMode(id);
     return;
   }
 
@@ -583,8 +1039,20 @@ elements.resultsTableBody.addEventListener("click", (event) => {
 });
 
 elements.backToSearchButton.addEventListener("click", returnToSearch);
-elements.editToggleButton.addEventListener("click", toggleMode);
-elements.viewEditModeButton.addEventListener("click", toggleMode);
+elements.viewModeTabButton.addEventListener("click", () => {
+  if (state.mode !== "view") {
+    state.mode = "view";
+    state.draftRecord = structuredClone(getSelectedRecord());
+  }
+  renderDetail();
+});
+elements.editModeTabButton.addEventListener("click", () => {
+  if (state.mode !== "edit") {
+    state.mode = "edit";
+    state.draftRecord = structuredClone(getSelectedRecord());
+  }
+  renderDetail();
+});
 elements.cancelEditButton.addEventListener("click", cancelEdit);
 
 elements.detailForm.addEventListener("submit", (event) => {
